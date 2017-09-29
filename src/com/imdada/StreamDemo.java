@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Stream 和 Collection
@@ -30,7 +32,7 @@ public class StreamDemo {
     }
 
     /**
-     * 1.stream
+     * 2.stream
      *  无存储、惰性、并行
      *  天然的函数式风格
      */
@@ -61,6 +63,11 @@ public class StreamDemo {
         String rs2 = customers.stream().map(Customer::getName).reduce("names:", (s1, s2) -> s1 + " " + s2);
         System.out.println(rs);
         System.out.println(rs2);
+
+//        Map<String,String> map = customers.stream().collect(Collectors.toMap(Customer::getName, Customer::getAge));
+        Map<String,Integer> map = customers.stream().collect(Collectors.toMap(Customer::getName, Customer::getAge));
+        System.out.println("alan's age:"+map.get("alan"));
+
     }
 
 
