@@ -1,4 +1,4 @@
-package com.imdada;
+package com.imdada.entity;
 
 /**
  * Created by caixinning on 2017/9/29.
