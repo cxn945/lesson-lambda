@@ -2,11 +2,12 @@ package com.imdada;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Stream 和 Collection
@@ -55,7 +56,7 @@ public class StreamDemo {
          * 终止操作：
          * 1.forEach: Performs an action for each element of this stream.
          * 2.reduce: Performs a reduction on the elements of this stream.
-         * 3.collect:
+         * 3.collect: Performs a reduction operation on the elements of this stream using a Collector.
          */
 
 
@@ -70,9 +71,25 @@ public class StreamDemo {
 
     }
 
+    /**
+     *  示例：1.通过Stream解析文件
+     */
+    @Test
+    public void main() throws IOException {
+        String file = "/Users/caixinning/case_export.csv";
+        Stream<String> stream = Files.lines(Paths.get(file));
+        List rs = stream.filter(s -> s.contains("自拍")).map(s->{
+            String[] arr = s.split(",");
+            Map<String, Object> item = new HashMap<>();
+            item.put("caseId", arr[0]);
+            item.put("userName", arr[2]);
+            item.put("callTime", arr[8]);
+            return item;
+        }).collect(Collectors.toList());
 
 
-
+        System.out.println(rs);
+    }
 
 
 
