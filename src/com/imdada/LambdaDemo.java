@@ -52,7 +52,7 @@ public class LambdaDemo {
     //lambda expressions close over values, not variables
     @Test
     public void scope(){
-        int size = 1;
+        final int size = 1;
         list.forEach(e-> System.out.println(size)); //正常
 //        list.forEach(e->size++);    // 报错，size是一个值
 
@@ -95,6 +95,7 @@ public class LambdaDemo {
         // 无返回值的
         void print(Object obj);
     }
+
 
 
 }

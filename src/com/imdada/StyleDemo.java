@@ -4,7 +4,6 @@ import com.imdada.util.StringTools;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,10 +22,13 @@ public class StyleDemo {
             list3.add(str);
         }
         //1.java7编程风格
-        Collections.sort(list1, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
+        Collections.sort(list1, (o1, o2) -> {
+            if (o1.hashCode()>o2.hashCode()){
+                return 1;
+            }else if(o1.length()>o2.length()){
+                return 0;
+            }else {
+                return -1;
             }
         });
         System.out.println(list1);
